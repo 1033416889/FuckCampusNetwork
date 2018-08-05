@@ -11,4 +11,4 @@ WHU校园网断线重连
 
 在当前文件夹下打开命令行输入 python autoLogin.py 运行这个py文件即可。  
 
-如果提示没有安装requests模块，打开命令行输入 pip install requests 即可。
+如果提示没有安装requests模块，打开命令行输入 pip install requests 即可。  
