@@ -2,6 +2,9 @@
 import subprocess
 import shlex
 
+# 统计断线重连的次数
+count = 0
+
 def login():
     url = "http://202.114.64.105:8080/eportal/userV2.do?"
 
@@ -26,14 +29,13 @@ def login():
         url += '%s=%s&'%(k,v)
 
     url = url[:-1]
-
-    print(url)
-
+    
     r = requests.post(url,headers=headers)
 
 
 
 def loop(code='gb2312'):
+    global count
     ip = 'www.baidu.com'
     shell_cmd = 'ping %s -t' %ip
     cmd = shlex.split(shell_cmd)
@@ -44,5 +46,7 @@ def loop(code='gb2312'):
         if line:
             if line.decode(code).find('请求超时') != -1:
                 login()
+                count += 1
+                print('已断线重连%d次'%count)
                 
 loop()
